@@ -36,7 +36,6 @@ RSpec.describe 'beers index page', type: :feature do
 
 
     visit "/beers"
-    save_and_open_page
 
     expect(page).to have_content(beer_1.name)
     expect(page).to have_content(beer_2.name)
