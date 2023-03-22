@@ -10,10 +10,10 @@ RSpec.describe 'breweries show page', type: :feature do
                                 city: "New York, NY",
                                 tanks: 15,
                                 has_license: true)
-    @brewery_2 = Brewery.create!(name: "Wild East",
-                                city: "New York, NY",
+    @brewery_2 = Brewery.create!(name: "Jester King",
+                                city: "Austin, TX",
                                 tanks: 10,
-                                has_license: true)
+                                has_license: false)
   end
 
   it 'can see the name of the specific brewery' do
@@ -40,7 +40,7 @@ RSpec.describe 'breweries show page', type: :feature do
 
   it 'can see whether or not the specific brewery has a license' do
     visit "/breweries/#{@brewery_1.id}"
-
+    save_and_open_page
     expect(page).to have_content(@brewery_1.has_license)
     expect(page).to_not have_content(@brewery_2.has_license)
   end
