@@ -11,7 +11,7 @@ RSpec.describe 'breweries index page', type: :feature do
                                 city: "New York, NY",
                                 tanks: 15,
                                 has_license: true)
-    brewery_1 = Brewery.create!(name: "Wild East",
+    brewery_2 = Brewery.create!(name: "Wild East",
                                 city: "New York, NY",
                                 tanks: 10,
                                 has_license: true)
