@@ -35,7 +35,6 @@ RSpec.describe 'breweries index page', type: :feature do
 
   it 'can see when each brewery was created' do
     visit "/breweries"
-    save_and_open_page
 
     expect(page).to have_content(@brewery_1.created_at)
     expect(page).to have_content(@brewery_2.created_at)
