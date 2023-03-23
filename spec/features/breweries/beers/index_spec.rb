@@ -72,7 +72,6 @@ RSpec.describe 'brewery beers index page' do
 
   it 'can see the fermentation status of all the brewerys beers' do
     visit "/breweries/#{@brewery_1.id}/beers"
-    save_and_open_page
 
     expect(page).to have_content(@beer_1.fermentation_completed)
     expect(page).to have_content(@beer_2.fermentation_completed)
