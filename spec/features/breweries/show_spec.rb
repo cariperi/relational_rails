@@ -4,6 +4,10 @@ require 'rails_helper'
 # When I visit '/parents/:id'
 # Then I see the parent with that id including the parent's attributes
 
+# As a visitor
+# When I visit a parent's show page
+# I see a count of the number of children associated with this parent
+
 RSpec.describe 'breweries show page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -14,6 +18,22 @@ RSpec.describe 'breweries show page', type: :feature do
                                 city: "Austin, TX",
                                 tanks: 10,
                                 has_license: false)
+
+    @beer_1 = @brewery_1.beers.create!(name: "Weekender",
+                                style: "American Lager",
+                                ibu: 7,
+                                abv: 5,
+                                fermentation_completed: true)
+    @beer_2 = @brewery_1.beers.create!(name: "Sun Up",
+                                style: "New England IPA",
+                                ibu: 38,
+                                abv: 6,
+                                fermentation_completed: false)
+    @beer_3 = @brewery_2.beers.create!(name: "Simple Means",
+                                style: "Altbier",
+                                ibu: 26,
+                                abv: 6,
+                                fermentation_completed: true)
   end
 
   it 'can see the name of the specific brewery' do
@@ -40,8 +60,14 @@ RSpec.describe 'breweries show page', type: :feature do
 
   it 'can see whether or not the specific brewery has a license' do
     visit "/breweries/#{@brewery_1.id}"
-    save_and_open_page
+
     expect(page).to have_content(@brewery_1.has_license)
     expect(page).to_not have_content(@brewery_2.has_license)
+  end
+
+  it 'can see a count of the specific brewerys beers' do
+    visit "/breweries/#{@brewery_1.id}"
+
+    expect(page).to have_content("Beers: 2")
   end
 end
