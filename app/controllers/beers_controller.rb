@@ -1,6 +1,6 @@
 class BeersController < ApplicationController
   def index
-    @beers = Beer.all
+    @beers = Beer.where(fermentation_completed: true)
   end
 
   def show
