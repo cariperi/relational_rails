@@ -16,6 +16,16 @@ class BreweriesController < ApplicationController
     @count = @brewery.beers.count
   end
 
+  def edit
+    @brewery = Brewery.find(params[:id])
+  end
+
+  def update
+    @brewery = Brewery.find(params[:id])
+    @brewery.update(brewery_params)
+    redirect_to "/breweries/#{@brewery.id}"
+  end
+
   private
   def brewery_params
     params.permit(:name, :city, :tanks, :has_license)
