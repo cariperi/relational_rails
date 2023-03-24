@@ -1,0 +1,7 @@
+<h1><%= @brewery.name %></h1>
+
+<p><b>City:</b> <%= @brewery.city %><p>
+<p><b>Number of Tanks:</b> <%= @brewery.tanks %><p>
+<p><b>License Obtained?</b> <%= @brewery.has_license %><p>
+<p><b>Beers:</b> <%= @count %><p>
+<a href="/breweries/<%="#{@brewery.id}"%>/beers">All <%="#{@brewery.name}"%> Beers</a>
