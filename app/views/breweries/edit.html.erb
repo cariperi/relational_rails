@@ -1,6 +1,6 @@
 <h1>Update Brewery Details</h1>
 
-<%= form_with url: "/breweries/#{@brewery.id}", method: :patch, local: true do |form| %>
+<%= form_with model: @brewery, url: "/breweries/#{@brewery.id}", method: :patch, local: true do |form| %>
   <%= form.label :name, "Name:" %>
   <%= form.text_field :name %>
   <%= form.label :city, "City:" %>
