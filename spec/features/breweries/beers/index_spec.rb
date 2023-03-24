@@ -10,6 +10,12 @@ require 'rails_helper'
 # When I click on the link
 # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
 
+# As a visitor
+# When I visit the `child_table_name` index page or a parent `child_table_name` index page
+# Next to every child, I see a link to edit that child's info
+# When I click the link
+# I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
+
 RSpec.describe 'brewery beers index page' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -97,6 +103,21 @@ RSpec.describe 'brewery beers index page' do
 
       expect(current_path).to eq("/breweries/#{@brewery_1.id}/beers")
       expect(@beer_2.name).to appear_before(@beer_1.name)
+    end
+  end
+
+  describe 'child update from parent child index page' do
+    it 'can see a link to edit the beer info next to each beers name' do
+      visit "/breweries/#{@brewery_1.id}/beers"
+      expect(page).to have_content("Edit #{@beer_1.name}")
+      expect(@beer_1.name).to appear_before("Edit #{@beer_1.name}")
+
+      click_link "Edit #{@beer_1.name}"
+      expect(current_path).to eq("/beers/#{@beer_1.id}/edit")
+
+      visit "/breweries/#{@brewery_1.id}/beers"
+      click_link "Edit #{@beer_2.name}"
+      expect(current_path).to eq("/beers/#{@beer_2.id}/edit")
     end
   end
 end
