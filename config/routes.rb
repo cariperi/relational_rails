@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get "/breweries/:id", to: "breweries#show"
   get "/breweries/:id/edit", to: "breweries#edit"
   patch "/breweries/:id", to: "breweries#update"
+
   get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
+  get "/breweries/:brewery_id/beers/new", to: "brewery_beers#new"
+  post "/breweries/:brewery_id/beers", to: "brewery_beers#create"
 
   get "/beers", to: "beers#index"
   get "/beers/:id", to: "beers#show"

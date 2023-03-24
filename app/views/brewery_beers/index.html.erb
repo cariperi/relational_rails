@@ -7,3 +7,5 @@
   <p><b>Bitterness:</b> <%= beer.ibu%> IBU<p>
   <p><b>Fermentation Completed?</b> <%= beer.fermentation_completed%><p>
 <% end %>
+
+<%= link_to 'Create New Beer', "/breweries/#{@brewery.id}/beers/new" %>
