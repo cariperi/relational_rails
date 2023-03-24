@@ -26,7 +26,6 @@ RSpec.describe 'Edit Brewery' do
       expect(page).to have_content('Update Brewery')
 
       click_link 'Update Brewery'
-      save_and_open_page
       expect(current_path).to eq("/breweries/#{@brewery_1.id}/edit")
     end
   end
