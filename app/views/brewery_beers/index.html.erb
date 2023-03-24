@@ -8,4 +8,5 @@
   <p><b>Fermentation Completed?</b> <%= beer.fermentation_completed%><p>
 <% end %>
 
-<%= link_to 'Create New Beer', "/breweries/#{@brewery.id}/beers/new" %>
+<p><%= link_to 'Sort Beers A to Z', "/breweries/#{@brewery.id}/beers?sort=AZ" %></p>
+<p><%= link_to 'Create New Beer', "/breweries/#{@brewery.id}/beers/new" %></p>
