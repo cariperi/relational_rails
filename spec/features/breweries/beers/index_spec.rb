@@ -4,6 +4,12 @@ require 'rails_helper'
 # When I visit '/parents/:parent_id/child_table_name'
 # Then I see each Child that is associated with that Parent with each Child's attributes
 
+# As a visitor
+# When I visit the Parent's children Index Page
+# Then I see a link to sort children in alphabetical order
+# When I click on the link
+# I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+
 RSpec.describe 'brewery beers index page' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -75,5 +81,22 @@ RSpec.describe 'brewery beers index page' do
 
     expect(page).to have_content(@beer_1.fermentation_completed)
     expect(page).to have_content(@beer_2.fermentation_completed)
+  end
+
+  describe 'ability to select to view beers in alphabetical order' do
+    it 'can see a link to sort beers alphabetically' do
+      visit "/breweries/#{@brewery_1.id}/beers"
+
+      expect(page).to have_content("Sort Beers A to Z")
+      expect(@beer_1.name).to appear_before(@beer_2.name)
+    end
+
+    it 'on click, it returns to the index page and sees beers sorted alphabetically' do
+      visit "/breweries/#{@brewery_1.id}/beers"
+      click_link "Sort Beers A to Z"
+
+      expect(current_path).to eq("/breweries/#{@brewery_1.id}/beers")
+      expect(@beer_2.name).to appear_before(@beer_1.name)
+    end
   end
 end
