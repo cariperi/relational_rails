@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   get "/beers", to: "beers#index"
   get "/beers/:id", to: "beers#show"
+  get "/beers/:id/edit", to: "beers#edit"
+  patch "/beers/:id", to: "beers#update"
 end

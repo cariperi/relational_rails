@@ -3,3 +3,5 @@
 <p><b>Alcohol by Volume(ABV):</b> <%= @beer.abv%>%<p>
 <p><b>Bitterness:</b> <%= @beer.ibu%> IBU<p>
 <p><b>Fermentation Completed?</b> <%= @beer.fermentation_completed%><p>
+
+<%= link_to 'Update This Beer', "/beers/#{@beer.id}/edit" %>
