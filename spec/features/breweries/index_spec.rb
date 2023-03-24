@@ -50,13 +50,15 @@ RSpec.describe 'breweries index page', type: :feature do
   describe 'parent update from parent index page' do
     it 'can see a link to edit the brewery info next to the brewery name' do
       visit "/breweries"
-      save_and_open_page
       expect(page).to have_content("Edit #{@brewery_1.name}")
       expect(@brewery_1.name).to appear_before("Edit #{@brewery_1.name}")
 
       click_link "Edit #{@brewery_1.name}"
-
       expect(current_path).to eq("/breweries/#{@brewery_1.id}/edit")
+
+      visit "/breweries"
+      click_link "Edit #{@brewery_2.name}"
+      expect(current_path).to eq("/breweries/#{@brewery_2.id}/edit")
     end
   end
 end
