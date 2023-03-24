@@ -8,6 +8,10 @@ require 'rails_helper'
 # When I visit any page on the site
 # Then I see a link at the top of the page that takes me to the Child Index
 
+# As a visitor
+# When I visit the child index
+# Then I only see records where the boolean column is `true`
+
 RSpec.describe 'beers index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -27,7 +31,7 @@ RSpec.describe 'beers index page', type: :feature do
     @beer_2 = @brewery_1.beers.create!(name: "Sun Up",
                                       style: "New England IPA",
                                       ibu: 38,
-                                      abv: 6,
+                                      abv: 4,
                                       fermentation_completed: false)
     @beer_3 = @brewery_2.beers.create!(name: "Simple Means",
                                       style: "Altbier",
@@ -36,28 +40,30 @@ RSpec.describe 'beers index page', type: :feature do
                                       fermentation_completed: true)
   end
 
-  it 'can see the name and attributes of each beer in the system' do
+  it 'can see the name and attributes of all beers that have completed fermentation' do
     visit "/beers"
 
     expect(page).to have_content(@beer_1.name)
-    expect(page).to have_content(@beer_2.name)
+    expect(page).to_not have_content(@beer_2.name)
     expect(page).to have_content(@beer_3.name)
 
     expect(page).to have_content(@beer_1.style)
-    expect(page).to have_content(@beer_2.style)
+    expect(page).to_not have_content(@beer_2.style)
     expect(page).to have_content(@beer_3.style)
 
     expect(page).to have_content(@beer_1.ibu)
-    expect(page).to have_content(@beer_2.ibu)
+    expect(page).to_not have_content(@beer_2.ibu)
     expect(page).to have_content(@beer_3.ibu)
 
     expect(page).to have_content(@beer_1.abv)
-    expect(page).to have_content(@beer_2.abv)
+    expect(page).to_not have_content(@beer_2.abv)
     expect(page).to have_content(@beer_3.abv)
 
     expect(page).to have_content(@beer_1.fermentation_completed)
-    expect(page).to have_content(@beer_2.fermentation_completed)
+    expect(page).to_not have_content(@beer_2.fermentation_completed)
     expect(page).to have_content(@beer_3.fermentation_completed)
+
+    expect(page).to_not have_content(false)
   end
 
   # describe 'link to child index' do
