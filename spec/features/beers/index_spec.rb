@@ -12,6 +12,12 @@ require 'rails_helper'
 # When I visit the child index
 # Then I only see records where the boolean column is `true`
 
+# As a visitor
+# When I visit the `child_table_name` index page or a parent `child_table_name` index page
+# Next to every child, I see a link to edit that child's info
+# When I click the link
+# I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
+
 RSpec.describe 'beers index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -64,6 +70,21 @@ RSpec.describe 'beers index page', type: :feature do
     expect(page).to have_content(@beer_3.fermentation_completed)
 
     expect(page).to_not have_content(false)
+  end
+
+  describe 'child update from child index page' do
+    it 'can see a link to edit the beer info next to the beer name' do
+      visit "/beers"
+      expect(page).to have_content("Edit #{@beer_1.name}")
+      expect(@beer_1.name).to appear_before("Edit #{@beer_1.name}")
+
+      click_link "Edit #{@beer_1.name}"
+      expect(current_path).to eq("/beers/#{@beer_1.id}/edit")
+
+      visit "/beers"
+      click_link "Edit #{@beer_3.name}"
+      expect(current_path).to eq("/beers/#{@beer_3.id}/edit")
+    end
   end
 
   # describe 'link to child index' do
