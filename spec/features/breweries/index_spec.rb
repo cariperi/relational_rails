@@ -9,6 +9,12 @@ require 'rails_helper'
 # I see that records are ordered by most recently created first
 # And next to each of the records I see when it was created
 
+# As a visitor
+# When I visit the parent index page
+# Next to every parent, I see a link to edit that parent's info
+# When I click the link
+# I should be taken to that parent's edit page where I can update its information just like in User Story 12
+
 RSpec.describe 'breweries index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -20,6 +26,7 @@ RSpec.describe 'breweries index page', type: :feature do
                                 tanks: 10,
                                 has_license: true)
   end
+
   it 'can see the name of each brewery in the system' do
     visit "/breweries"
 
@@ -38,5 +45,18 @@ RSpec.describe 'breweries index page', type: :feature do
 
     expect(page).to have_content(@brewery_1.created_at)
     expect(page).to have_content(@brewery_2.created_at)
+  end
+
+  describe 'parent update from parent index page' do
+    it 'can see a link to edit the brewery info next to the brewery name' do
+      visit "/breweries"
+      save_and_open_page
+      expect(page).to have_content("Edit #{@brewery_1.name}")
+      expect(@brewery_1.name).to appear_before("Edit #{@brewery_1.name}")
+
+      click_link "Edit #{@brewery_1.name}"
+
+      expect(current_path).to eq("/breweries/#{@brewery_1.id}/edit")
+    end
   end
 end
