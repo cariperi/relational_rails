@@ -1,0 +1,13 @@
+<h1>Create a New Brewery</h1>
+
+<%= form_with model: @brewery, url: "/breweries", method: :post, local: true do |form| %>
+  <%= form.label :name, "Name:" %>
+  <%= form.text_field :name %>
+  <%= form.label :city, "City:" %>
+  <%= form.text_field :city %>
+  <%= form.label :tanks, "Number of Tanks:" %>
+  <%= form.number_field :tanks %>
+  <%= form.label :has_license, "Has License?" %>
+  <%= form.check_box :has_license %>
+  <%= form.submit "Create Brewery" %>
+<% end %>

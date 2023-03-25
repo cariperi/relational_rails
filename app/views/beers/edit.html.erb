@@ -1,0 +1,15 @@
+<h1>Update Beer Details</h1>
+
+<%= form_with model: @beer, url: "/beers/#{@beer.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name, "Name:" %>
+  <%= form.text_field :name %>
+  <%= form.label :style, "Style:" %>
+  <%= form.text_field :style %>
+  <%= form.label :ibu, "IBU:" %>
+  <%= form.number_field :ibu %>
+  <%= form.label :abv, "ABV:" %>
+  <%= form.number_field :abv %>
+  <%= form.label :fermentation_completed, "Fermentation Completed?" %>
+  <%= form.check_box :fermentation_completed %>
+  <%= form.submit "Save Changes" %>
+<% end %>
