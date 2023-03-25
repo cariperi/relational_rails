@@ -1,0 +1,9 @@
+<% @beers.each do |beer| %>
+  <div>
+  <h3><%= beer.name %> <%= link_to "Edit #{beer.name}", "/beers/#{beer.id}/edit" %></h3>
+  <p><b>Style:</b> <%= beer.style %><p>
+  <p><b>Alcohol by Volume(ABV):</b> <%= beer.abv%>%<p>
+  <p><b>Bitterness:</b> <%= beer.ibu%> IBU<p>
+  <p><b>Fermentation Completed?</b> <%= beer.fermentation_completed%><p>
+  </div>
+<% end %>
