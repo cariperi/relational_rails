@@ -36,8 +36,8 @@ RSpec.describe 'delete child records' do
       click_link 'Delete This Beer'
 
       expect(current_path).to eq('/beers')
-      expect(page).to_not have_content("#{@beer_1.name}")
-      expect(page).to have_content("#{@beer_2.name}")
+      expect(page).to_not have_content(@beer_1.name)
+      expect(page).to have_content(@beer_2.name)
     end
   end
 end

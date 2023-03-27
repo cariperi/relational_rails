@@ -36,11 +36,11 @@ RSpec.describe 'delete brewery records' do
       click_link "Delete #{@brewery_1.name}"
 
       expect(current_path).to eq("/breweries")
-      expect(page).to_not have_content("#{@brewery_1.name}")
+      expect(page).to_not have_content(@brewery_1.name)
 
       visit "/beers"
-      expect(page).to_not have_content("#{@beer_1.name}")
-      expect(page).to_not have_content("#{@beer_2.name}")
+      expect(page).to_not have_content(@beer_1.name)
+      expect(page).to_not have_content(@beer_2.name)
     end
   end
 end
