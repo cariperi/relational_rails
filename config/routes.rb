@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/breweries/:id", to: "breweries#show"
   get "/breweries/:id/edit", to: "breweries#edit"
   patch "/breweries/:id", to: "breweries#update"
+  delete "/breweries/:id", to: "breweries#destroy"
 
   get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
   get "/breweries/:brewery_id/beers/new", to: "brewery_beers#new"
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   get "/beers/:id", to: "beers#show"
   get "/beers/:id/edit", to: "beers#edit"
   patch "/beers/:id", to: "beers#update"
+  delete "/beers/:id", to: "beers#destroy"
 end
