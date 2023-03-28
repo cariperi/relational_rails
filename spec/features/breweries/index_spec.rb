@@ -1,26 +1,5 @@
 require 'rails_helper'
 
-# For each parent table
-# As a visitor
-# When I visit '/parents'
-# Then I see the name of each parent record in the system
-
-# When I visit the parent index,
-# I see that records are ordered by most recently created first
-# And next to each of the records I see when it was created
-
-# As a visitor
-# When I visit the parent index page
-# Next to every parent, I see a link to edit that parent's info
-# When I click the link
-# I should be taken to that parent's edit page where I can update its information just like in User Story 12
-
-# As a visitor
-# When I visit the parent index page
-# Next to every parent, I see a link to delete that parent
-# When I click the link
-# I am returned to the Parent Index Page where I no longer see that parent
-
 RSpec.describe 'breweries index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",

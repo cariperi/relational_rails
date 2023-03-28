@@ -1,17 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit '/parents/:id'
-# Then I see the parent with that id including the parent's attributes
-
-# As a visitor
-# When I visit a parent's show page
-# I see a count of the number of children associated with this parent
-
-# As a visitor
-# When I visit a parent show page ('/parents/:id')
-# Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
-
 RSpec.describe 'breweries show page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
