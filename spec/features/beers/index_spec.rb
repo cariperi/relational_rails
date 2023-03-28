@@ -83,4 +83,24 @@ RSpec.describe 'beers index page', type: :feature do
       expect(page).to have_content(@beer_3.name)
     end
   end
+
+  describe 'search by name (exact match)' do
+    it 'can show records matching an exact-match keyword search for beer name' do
+      visit "/beers"
+
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to have_content(@beer_3.name)
+
+      expect(page).to have_content("Filter Beers by Name:")
+      expect(page).to have_field(:query)
+      expect(page).to have_button("Submit")
+
+      fill_in :query, with: "#{@beer_1.name}"
+      click_button "Submit"
+
+      expect(current_path).to eq("/beers")
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to_not have_content(@beer_3.name)
+    end
+  end
 end
