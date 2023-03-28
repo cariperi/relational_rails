@@ -1,13 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit a child show page
-# Then I see a link to delete the child "Delete Child"
-# When I click the link
-# Then a 'DELETE' request is sent to '/child_table_name/:id',
-# the child is deleted,
-# and I am redirected to the child index page where I no longer see this child
-
 RSpec.describe 'delete child records' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
