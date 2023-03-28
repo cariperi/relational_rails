@@ -1,29 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit '/child_table_name'
-# Then I see each Child in the system including the Child's attributes
-
-# As a visitor
-# When I visit any page on the site
-# Then I see a link at the top of the page that takes me to the Child Index
-
-# As a visitor
-# When I visit the child index
-# Then I only see records where the boolean column is `true`
-
-# As a visitor
-# When I visit the `child_table_name` index page or a parent `child_table_name` index page
-# Next to every child, I see a link to edit that child's info
-# When I click the link
-# I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
-
-# As a visitor
-# When I visit the `child_table_name` index page or a parent `child_table_name` index page
-# Next to every child, I see a link to delete that child
-# When I click the link
-# I should be taken to the `child_table_name` index page where I no longer see that child
-
 RSpec.describe 'beers index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -107,26 +83,4 @@ RSpec.describe 'beers index page', type: :feature do
       expect(page).to have_content(@beer_3.name)
     end
   end
-
-  # describe 'link to child index' do
-  #   it 'can see a link at the top of each page to the Beers Index' do
-  #     @routes = ["/breweries",
-  #                "/breweries/#{@brewery_1.id}",
-  #                "/breweries/#{@brewery_2.id}",
-  #                "/breweries/#{@brewery_1.id}/beers",
-  #                "/breweries/#{@brewery_2.id}/beers",
-  #                "/beers",
-  #                "/beers/#{@beer_1.id}",
-  #                "/beers/#{@beer_2.id}",
-  #                "/beers/#{@beer_3.id}"]
-
-  #     @routes.each do |route|
-  #       visit route
-  #       expect(page).to have_content("See All Beers")
-
-  #       click_link "See All Beers"
-  #       expect(page).to have_current_path(beers_path)
-  #     end
-  #   end
-  # end
 end

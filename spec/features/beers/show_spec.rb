@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit '/child_table_name/:id'
-# Then I see the child with that id including the child's attributes
-
 RSpec.describe 'beers show page' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",

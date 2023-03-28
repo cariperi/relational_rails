@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   patch "/breweries/:id", to: "breweries#update"
   delete "/breweries/:id", to: "breweries#destroy"
 
-  get "/breweries/:brewery_id/beers", to: "brewery_beers#index"
-  get "/breweries/:brewery_id/beers/new", to: "brewery_beers#new"
-  post "/breweries/:brewery_id/beers", to: "brewery_beers#create"
+  get "/breweries/:brewery_id/beers", to: "breweries/beers#index"
+  get "/breweries/:brewery_id/beers/new", to: "breweries/beers#new"
+  post "/breweries/:brewery_id/beers", to: "breweries/beers#create"
 
   get "/beers", to: "beers#index"
   get "/beers/:id", to: "beers#show"
