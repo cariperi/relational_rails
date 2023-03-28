@@ -1,13 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit any page on the site
-# Then I see a link at the top of the page that takes me to the Child Index
-
-# As a visitor
-# When I visit any page on the site
-# Then I see a link at the top of the page that takes me to the Parent Index
-
 RSpec.describe 'application layout view', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
