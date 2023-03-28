@@ -1,7 +1,11 @@
 <h1>All Breweries</h1>
 
 <% @breweries.each do |brewery| %>
-  <h3><%= brewery.name %> <%= link_to "Edit #{brewery.name}", "/breweries/#{brewery.id}/edit" %></h3>
+  <h3>
+    <%= brewery.name %>
+    <%= link_to "Edit #{brewery.name}", "/breweries/#{brewery.id}/edit" %>
+    <%= link_to "Delete #{brewery.name}", "/breweries/#{brewery.id}", method: :delete %>
+  </h3>
   <p><b>Created at:</b> <%= brewery.created_at %><p>
 <% end %>
 
