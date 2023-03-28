@@ -76,5 +76,14 @@ RSpec.describe Brewery, type: :model do
         expect(result).to eq(expected)
       end
     end
+
+    describe '#beers_over_ibu' do
+      it 'can return a list of beers over a given ibu amount' do
+        expected = [@beer_2]
+        result = @talea.beers_over_ibu(20)
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 end
