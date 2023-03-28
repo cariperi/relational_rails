@@ -1,4 +1,4 @@
-class BreweryBeersController < ApplicationController
+class Breweries::BeersController < ApplicationController
   def index
     @brewery = Brewery.find(params[:brewery_id])
     @beers = sort_beers
