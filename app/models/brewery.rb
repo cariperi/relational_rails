@@ -5,6 +5,10 @@ class Brewery < ApplicationRecord
     order(created_at: :desc)
   end
 
+  def self.exact_match_search(query)
+    where(name: query)
+  end
+
   def count_beers
     beers.count
   end

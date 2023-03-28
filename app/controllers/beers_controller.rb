@@ -1,6 +1,6 @@
 class BeersController < ApplicationController
   def index
-    @beers = Beer.fermentation_completed
+    @beers = get_beers
   end
 
   def show
@@ -25,5 +25,13 @@ class BeersController < ApplicationController
   private
   def beer_params
     params.require(:beer).permit(:name, :style, :abv, :ibu, :fermentation_completed)
+  end
+
+  def get_beers
+    if params[:query]
+      Beer.exact_match_search(params[:query])
+    else
+      Beer.fermentation_completed
+    end
   end
 end

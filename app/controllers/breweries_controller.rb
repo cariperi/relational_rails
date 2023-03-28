@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
   def index
-    @breweries = Brewery.sort_by_creation_date
+    @breweries = get_breweries
   end
 
   def new
@@ -35,5 +35,13 @@ class BreweriesController < ApplicationController
   private
   def brewery_params
     params.require(:brewery).permit(:name, :city, :tanks, :has_license)
+  end
+
+  def get_breweries
+    if params[:query]
+      Brewery.exact_match_search(params[:query])
+    else
+      Brewery.sort_by_creation_date
+    end
   end
 end
