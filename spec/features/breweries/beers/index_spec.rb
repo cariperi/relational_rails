@@ -16,6 +16,12 @@ require 'rails_helper'
 # When I click the link
 # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
 
+# As a visitor
+# When I visit the Parent's children Index Page
+# I see a form that allows me to input a number value
+# When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+# Then I am brought back to the current index page with only the records that meet that threshold shown.
+
 RSpec.describe 'brewery beers index page' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -118,6 +124,32 @@ RSpec.describe 'brewery beers index page' do
       visit "/breweries/#{@brewery_1.id}/beers"
       click_link "Edit #{@beer_2.name}"
       expect(current_path).to eq("/beers/#{@beer_2.id}/edit")
+    end
+  end
+
+  describe 'ability to filter beers by ABV' do
+    it 'can see a form to input an IBU number value' do
+      visit "/breweries/#{@brewery_1.id}/beers"
+
+      expect(page).to have_content("Show Only Beers with Bitterness (IBU) Over:")
+      expect(page).to have_field("ibu")
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to have_content(@beer_2.name)
+      expect(page).to have_content(@beer_1.style)
+      expect(page).to have_content(@beer_2.style)
+    end
+
+    it 'can filter the list of child beers by IBU value' do
+      visit "/breweries/#{@brewery_1.id}/beers"
+
+      fill_in :ibu, with: 20
+      click_button 'Filter'
+
+      expect(current_path).to eq("/breweries/#{@brewery_1.id}/beers")
+      expect(page).to_not have_content(@beer_1.name)
+      expect(page).to_not have_content(@beer_1.style)
+      expect(page).to have_content(@beer_2.name)
+      expect(page).to have_content(@beer_2.style)
     end
   end
 end
