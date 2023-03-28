@@ -1,27 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-
-# As a visitor
-# When I visit the Parent's children Index Page
-# Then I see a link to sort children in alphabetical order
-# When I click on the link
-# I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
-
-# As a visitor
-# When I visit the `child_table_name` index page or a parent `child_table_name` index page
-# Next to every child, I see a link to edit that child's info
-# When I click the link
-# I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
-
-# As a visitor
-# When I visit the Parent's children Index Page
-# I see a form that allows me to input a number value
-# When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
-# Then I am brought back to the current index page with only the records that meet that threshold shown.
-
 RSpec.describe 'brewery beers index page' do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
