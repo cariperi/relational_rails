@@ -60,8 +60,9 @@ RSpec.describe Brewery, type: :model do
     describe '::sort_by_creation_date' do
       it 'can sort brewery records by creation date in descending order' do
         expected = [@robot, @jester, @talea]
+        result = Brewery.sort_by_creation_date
 
-        expect(Brewery.sort_by_creation_date).to eq(expected)
+        expect(result).to eq(expected)
       end
     end
   end
