@@ -8,4 +8,8 @@ class Brewery < ApplicationRecord
   def count_beers
     beers.count
   end
+
+  def beers_over_ibu(input_ibu)
+    beers.where("ibu > #{input_ibu}")
+  end
 end
