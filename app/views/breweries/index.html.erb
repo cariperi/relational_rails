@@ -1,12 +1,16 @@
 <h1>All Breweries</h1>
 
-<% @breweries.each do |brewery| %>
-  <h3>
-    <%= brewery.name %>
-    <%= link_to "Edit #{brewery.name}", "/breweries/#{brewery.id}/edit" %>
-    <%= link_to "Delete #{brewery.name}", "/breweries/#{brewery.id}", method: :delete %>
-  </h3>
-  <p><b>Created at:</b> <%= brewery.created_at %><p>
-<% end %>
+  <% @breweries.each do |brewery| %>
+    <div id="brewery_details">
+      <h3><%= brewery.name %></h3>
+      <p><b>Created at:</b> <%= brewery.created_at %><p>
+      <div id="edit_delete_brewery">
+        <%= link_to "Edit #{brewery.name}", "/breweries/#{brewery.id}/edit" %>
+        |
+        <%= link_to "Delete #{brewery.name}", "/breweries/#{brewery.id}", method: :delete %>
+      </div>
+    </div>
+  <% end %>
 
-<%= link_to 'New Brewery', '/breweries/new' %>
+
+<p><b><%= link_to 'New Brewery', '/breweries/new' %></b></p>
