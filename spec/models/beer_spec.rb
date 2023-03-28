@@ -65,5 +65,14 @@ RSpec.describe Beer, type: :model do
         expect(result).to eq(expected)
       end
     end
+
+    describe '::exact_match_search' do
+      it 'can return beer records that match a search input by name' do
+        expected = [@beer_1]
+        result = Beer.exact_match_search(@beer_1.name)
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 end
