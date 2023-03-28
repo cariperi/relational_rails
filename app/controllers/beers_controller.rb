@@ -30,6 +30,8 @@ class BeersController < ApplicationController
   def get_beers
     if params[:query]
       Beer.exact_match_search(params[:query])
+    elsif params[:fuzzy_query]
+      Beer.partial_match_search(params[:fuzzy_query])
     else
       Beer.fermentation_completed
     end
