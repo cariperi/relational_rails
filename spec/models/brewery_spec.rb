@@ -85,5 +85,14 @@ RSpec.describe Brewery, type: :model do
         expect(result).to eq(expected)
       end
     end
+
+    describe '#beers_sorted_by_name' do
+      it 'can return a list of beers sorted by name' do
+        expected = [@beer_2, @beer_1]
+        result = @talea.beers_sorted_by_name
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 end
