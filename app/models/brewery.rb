@@ -4,4 +4,8 @@ class Brewery < ApplicationRecord
   def self.sort_by_creation_date
     order(created_at: :desc)
   end
+
+  def count_beers
+    beers.count
+  end
 end

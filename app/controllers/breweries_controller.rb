@@ -14,7 +14,7 @@ class BreweriesController < ApplicationController
 
   def show
     @brewery = Brewery.find(params[:id])
-    @count = @brewery.beers.count
+    @count = @brewery.count_beers
   end
 
   def edit
