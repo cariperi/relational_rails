@@ -107,26 +107,4 @@ RSpec.describe 'beers index page', type: :feature do
       expect(page).to have_content(@beer_3.name)
     end
   end
-
-  # describe 'link to child index' do
-  #   it 'can see a link at the top of each page to the Beers Index' do
-  #     @routes = ["/breweries",
-  #                "/breweries/#{@brewery_1.id}",
-  #                "/breweries/#{@brewery_2.id}",
-  #                "/breweries/#{@brewery_1.id}/beers",
-  #                "/breweries/#{@brewery_2.id}/beers",
-  #                "/beers",
-  #                "/beers/#{@beer_1.id}",
-  #                "/beers/#{@beer_2.id}",
-  #                "/beers/#{@beer_3.id}"]
-
-  #     @routes.each do |route|
-  #       visit route
-  #       expect(page).to have_content("See All Beers")
-
-  #       click_link "See All Beers"
-  #       expect(page).to have_current_path(beers_path)
-  #     end
-  #   end
-  # end
 end
