@@ -10,3 +10,11 @@
 <% end %>
 
 <%= link_to 'New Brewery', '/breweries/new' %>
+
+<div>
+  <%= form_with url: "/breweries", local: true, method: :get do |form| %>
+    <%= form.label :query, "Filter Breweries by Name:" %>
+    <%= form.text_field :query %>
+    <%= form.submit "Submit" %>
+  <% end %>
+</div>
