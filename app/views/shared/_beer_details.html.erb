@@ -1,10 +1,11 @@
 <% @beers.each do |beer| %>
-  <div>
-    <h3>
-      <%= beer.name %>
-      <%= link_to "Edit #{beer.name}", "/beers/#{beer.id}/edit" %>
-      <%= link_to "Delete #{beer.name}", "/beers/#{beer.id}", method: :delete %>
-    </h3>
+  <div id="beer_details">
+    <h3><%= beer.name %></h3>
+      <div id="edit_delete_beers">
+        <%= link_to "Edit #{beer.name}", "/beers/#{beer.id}/edit" %>
+        |
+        <%= link_to "Delete #{beer.name}", "/beers/#{beer.id}", method: :delete %>
+      </div>
     <p><b>Style:</b> <%= beer.style %><p>
     <p><b>Alcohol by Volume(ABV):</b> <%= beer.abv%>%<p>
     <p><b>Bitterness:</b> <%= beer.ibu%> IBU<p>

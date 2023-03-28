@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  background-color: lightcyan;
+}
+
+#brewery_details {
+  padding-bottom: 15px;
+}
+
+#edit_delete_brewery {
+  font-size: smaller;
+}
+
+#beer_details {
+  padding-bottom: 10px;
+}
+
+#edit_delete_beers {
+  font-size: smaller;
+}
