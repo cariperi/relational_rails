@@ -12,4 +12,8 @@ class Brewery < ApplicationRecord
   def beers_over_ibu(input_ibu)
     beers.where("ibu > #{input_ibu}")
   end
+
+  def beers_sorted_by_name
+    beers.order(:name)
+  end
 end

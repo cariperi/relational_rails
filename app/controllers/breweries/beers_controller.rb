@@ -24,7 +24,7 @@ class Breweries::BeersController < ApplicationController
     if !params[:ibu].nil?
       @brewery.beers_over_ibu(params[:ibu])
     elsif params[:sort] == "AZ"
-      @brewery.beers.order(:name)
+      @brewery.beers_sorted_by_name
     else
       @brewery.beers
     end
