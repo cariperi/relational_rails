@@ -1,7 +1,7 @@
 class Breweries::BeersController < ApplicationController
   def index
     @brewery = Brewery.find(params[:brewery_id])
-    @beers = sort_beers
+    @beers = get_beers
   end
 
   def new
@@ -20,7 +20,7 @@ class Breweries::BeersController < ApplicationController
     params.require(:beer).permit(:name, :style, :abv, :ibu, :fermentation_completed)
   end
 
-  def sort_beers
+  def get_beers
     if !params[:ibu].nil?
       @brewery.beers.where("ibu > #{params[:ibu]}")
     elsif params[:sort] == "AZ"
