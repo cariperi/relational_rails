@@ -96,11 +96,39 @@ RSpec.describe 'beers index page', type: :feature do
       expect(page).to have_button("Submit")
 
       fill_in :query, with: "#{@beer_1.name}"
-      click_button "Submit"
+      click_button "Submit Exact Search"
 
       expect(current_path).to eq("/beers")
       expect(page).to have_content(@beer_1.name)
       expect(page).to_not have_content(@beer_3.name)
+    end
+  end
+
+  describe 'search by name (partial match)' do
+    it 'can show records matching a partial-match keyword search for beer name' do
+      beer_4 = @brewery_1.beers.create!(name: "Keep it Simple",
+                                    style: "IPA",
+                                    ibu: 30,
+                                    abv: 5,
+                                    fermentation_completed: true)
+
+      visit "/beers"
+
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to have_content(@beer_3.name)
+      expect(page).to have_content(beer_4.name)
+
+      expect(page).to have_content("Filter Beers by Partial Name:")
+      expect(page).to have_field(:fuzzy_query)
+      expect(page).to have_button("Submit")
+
+      fill_in :fuzzy_query, with: "Simple"
+      click_button "Submit Partial Search"
+
+      expect(current_path).to eq("/beers")
+      expect(page).to have_content(@beer_3.name)
+      expect(page).to have_content(beer_4.name)
+      expect(page).to_not have_content(@beer_1.name)
     end
   end
 end

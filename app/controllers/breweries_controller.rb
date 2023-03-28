@@ -40,6 +40,8 @@ class BreweriesController < ApplicationController
   def get_breweries
     if params[:query]
       Brewery.exact_match_search(params[:query])
+    elsif params[:fuzzy_query]
+      Brewery.partial_match_search(params[:fuzzy_query])
     else
       Brewery.sort_by_creation_date
     end

@@ -8,4 +8,8 @@ class Beer < ApplicationRecord
   def self.exact_match_search(query)
     where(name: query)
   end
+
+  def self.partial_match_search(query)
+    where("name like ?", "%#{query}%")
+  end
 end

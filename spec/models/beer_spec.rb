@@ -74,5 +74,21 @@ RSpec.describe Beer, type: :model do
         expect(result).to eq(expected)
       end
     end
+
+    describe '::partial_match_search' do
+      it 'can return beer records that partially match a search input by name' do
+        beer_7 = @robot.beers.create!(name: "Keep it Simple",
+                                      style: "IPA",
+                                      ibu: 30,
+                                      abv: 5,
+                                      fermentation_completed: true)
+
+        search = "Simple"
+        expected = [@beer_3, beer_7]
+        result = Beer.partial_match_search(search)
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 end

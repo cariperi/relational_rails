@@ -9,6 +9,10 @@ class Brewery < ApplicationRecord
     where(name: query)
   end
 
+  def self.partial_match_search(query)
+    where("name like ?", "%#{query}%")
+  end
+
   def count_beers
     beers.count
   end

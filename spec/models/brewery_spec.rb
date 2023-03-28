@@ -74,6 +74,21 @@ RSpec.describe Brewery, type: :model do
         expect(result).to eq(expected)
       end
     end
+
+    describe '::partial_match_search' do
+      it 'can return brewery records that partially match a search input by name' do
+        grimm = Brewery.create!(name: "Grimm Beers Inc.",
+        city: "New York, NY",
+        tanks: 20,
+        has_license: true)
+
+        search = "Beer"
+        expected = [@talea, grimm]
+        result = Brewery.partial_match_search(search)
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 
   describe 'instance methods' do

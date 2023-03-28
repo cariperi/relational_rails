@@ -18,6 +18,14 @@
   <%= form_with url: "/breweries", local: true, method: :get do |form| %>
     <%= form.label :query, "Filter Breweries by Name:" %>
     <%= form.text_field :query %>
-    <%= form.submit "Submit" %>
+    <%= form.submit "Submit Exact Search" %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with url: "/breweries", local: true, method: :get do |form| %>
+    <%= form.label :fuzzy_query, "Filter Breweries by Partial Name:" %>
+    <%= form.text_field :fuzzy_query %>
+    <%= form.submit "Submit Partial Search" %>
   <% end %>
 </div>
