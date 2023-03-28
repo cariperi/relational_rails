@@ -15,6 +15,12 @@ require 'rails_helper'
 # When I click the link
 # I should be taken to that parent's edit page where I can update its information just like in User Story 12
 
+# As a visitor
+# When I visit the parent index page
+# Next to every parent, I see a link to delete that parent
+# When I click the link
+# I am returned to the Parent Index Page where I no longer see that parent
+
 RSpec.describe 'breweries index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -59,6 +65,21 @@ RSpec.describe 'breweries index page', type: :feature do
       visit "/breweries"
       click_link "Edit #{@brewery_2.name}"
       expect(current_path).to eq("/breweries/#{@brewery_2.id}/edit")
+    end
+  end
+
+  describe 'delete parent from parent index page' do
+    it 'can delete a brewery from the index page' do
+      visit "/breweries"
+      expect(page).to have_content("Delete #{@brewery_1.name}")
+      expect(page).to have_content("Delete #{@brewery_2.name}")
+      expect(@brewery_1.name).to appear_before("Delete #{@brewery_1.name}")
+
+      click_link "Delete #{@brewery_1.name}"
+
+      expect(current_path).to eq("/breweries")
+      expect(page).to_not have_content(@brewery_1.name)
+      expect(page).to have_content(@brewery_2.name)
     end
   end
 end
