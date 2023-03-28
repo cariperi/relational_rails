@@ -2,5 +2,12 @@
 
 <%= render "shared/beer_details" %>
 
-<p><%= link_to 'Sort Beers A to Z', "/breweries/#{@brewery.id}/beers?sort=AZ" %></p>
 <p><%= link_to 'Create New Beer', "/breweries/#{@brewery.id}/beers/new" %></p>
+<p><%= link_to 'Sort Beers A to Z', "/breweries/#{@brewery.id}/beers?sort=AZ" %></p>
+
+<p><b>Show Only Beers with Bitterness (IBU) Over:</b></p>
+<%= form_with url: "/breweries/#{@brewery.id}/beers", method: :get, local: true do |form| %>
+  <%= form.number_field :ibu %>
+  <%= form.submit 'Filter' %>
+<% end %>
+
