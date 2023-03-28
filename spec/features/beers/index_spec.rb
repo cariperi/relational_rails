@@ -18,6 +18,12 @@ require 'rails_helper'
 # When I click the link
 # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
 
+# As a visitor
+# When I visit the `child_table_name` index page or a parent `child_table_name` index page
+# Next to every child, I see a link to delete that child
+# When I click the link
+# I should be taken to the `child_table_name` index page where I no longer see that child
+
 RSpec.describe 'beers index page', type: :feature do
   before(:each) do
     @brewery_1 = Brewery.create!(name: "Talea Beer Co.",
@@ -84,6 +90,21 @@ RSpec.describe 'beers index page', type: :feature do
       visit "/beers"
       click_link "Edit #{@beer_3.name}"
       expect(current_path).to eq("/beers/#{@beer_3.id}/edit")
+    end
+  end
+
+  describe 'child delete from child index page' do
+    it 'can see a link to delete the beer next to each beer name' do
+      visit "/beers"
+      expect(page).to have_content("Delete #{@beer_1.name}")
+      expect(page).to have_content("Delete #{@beer_3.name}")
+      expect(@beer_1.name).to appear_before("Delete #{@beer_1.name}")
+
+      click_link "Delete #{@beer_1.name}"
+
+      expect(current_path).to eq("/beers")
+      expect(page).to_not have_content(@beer_1.name)
+      expect(page).to have_content(@beer_3.name)
     end
   end
 
